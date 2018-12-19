@@ -6,9 +6,10 @@ import { NavController } from 'ionic-angular';
   templateUrl: 'about.html'
 })
 export class AboutPage {
-
+  currencyOutput: number;
   constructor(public navCtrl: NavController) {
-
+    this.currencyOutput = 3;
   }
 
+  
 }

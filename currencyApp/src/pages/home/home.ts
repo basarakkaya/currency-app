@@ -15,6 +15,7 @@ export class HomePage {
 
   constructor(public navCtrl: NavController, public http: HttpClient, public currencyProvider: CurrencyProvider) {
 
+    //TODO: change eventine bağlı olarak değişebilecek hale getir
     this.baseCurr = "TRY";
     this.currencies = [];
 

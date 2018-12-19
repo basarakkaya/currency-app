@@ -8,6 +8,12 @@
   <h2>Döviz Kurlarını İnceleyin</h2>
   <div id="currency-divison">
     <h1>{{baseCurr}}</h1>
+    <ion-item>
+      <ion-label>Baz Birim</ion-label>
+      <ion-select [(ngModel)]="baseCurr">
+        <ion-option *ngFor="let c of currencies" value="{{c.name}}">{{c.name}}</ion-option>
+      </ion-select>
+    </ion-item>
     <div *ngFor="let currency of currencies">
       {{currency.name}} - {{currency.rate}} {{baseCurr}}
     </div>

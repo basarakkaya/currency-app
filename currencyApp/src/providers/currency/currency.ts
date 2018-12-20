@@ -24,21 +24,24 @@ export class CurrencyProvider {
       keys:{}[];
         this.http.get(url).toPromise().then(
           (response:ApiObject) => {
-          console.log(response);
           keys = Object.keys(response.rates);
           res(keys);
       });
     });
   }
 
-  getCurrencyRates(base){
+  getCurrencyRates(base, date){
     return new Promise((res, rej) => {
-      let url = "https://api.exchangeratesapi.io/latest?base=" + base,
-      rates;
+      let url = "https://api.exchangeratesapi.io/" + date + "?base=" + base,
+      rates = [];
         this.http.get(url).toPromise().then(
           (response:ApiObject) => {
-          console.log(response);
-          rates = response.rates;
+          Object.keys(response.rates).forEach(cKey => {
+            rates.push({
+              "name": cKey,
+              "rate": (1 / response.rates[cKey]).toPrecision(3)
+            });
+          });
           res(rates);
         });
     });

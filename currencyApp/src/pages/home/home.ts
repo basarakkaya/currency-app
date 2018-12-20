@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { NavController } from 'ionic-angular';
+import { NavController} from 'ionic-angular';
 import { HttpClient } from '@angular/common/http';
 import { CurrencyProvider } from '../../providers/currency/currency';
 
@@ -10,30 +10,36 @@ import { CurrencyProvider } from '../../providers/currency/currency';
 })
 export class HomePage {
   currencies: Array<{ name: string, rate: number }>;
-  baseCurr: string;
+  baseCurrency: string;
   keys: string[];
+  currencyChange: Function;
+  getRates: Function;
+  date: string;
+  dateChange: Function;
 
   constructor(public navCtrl: NavController, public http: HttpClient, public currencyProvider: CurrencyProvider) {
-
-    //TODO: change eventine bağlı olarak değişebilecek hale getir
-    this.baseCurr = "TRY";
+    let date = new Date();
+    this.baseCurrency = "TRY";
     this.currencies = [];
+    this.date = date.getFullYear()+"-"+date.getMonth()+"-"+date.getDate();
+    this.getRates = function(){
+      currencyProvider.getCurrencyRates(this.baseCurrency, this.date).then((response:{name: string; rate:number;}[]) => {
+        this.currencies = response;
+      });
+    }
+    this.currencyChange = function(c){
+      this.baseCurrency = c;
+      this.getRates();
+    }
+    this.dateChange = function(d){
+      this.date=d;
+      this.getRates();
+    }
 
     currencyProvider.getCurrencyKeys().then((response:string[]) => {
-      console.log("currency keys: " + response);
       this.keys = response;
-    }).then(() => {
-      currencyProvider.getCurrencyRates(this.baseCurr).then((response:{name: string; rate:number;}[]) => {
-        this.keys.forEach(currencyKey => {
-          this.currencies.push({
-            "name": currencyKey, 
-            "rate": (1 / response[currencyKey])
-          });
-        });
-      });
     });
-    
-    
+
+    this.getRates();
   }
-  
 }

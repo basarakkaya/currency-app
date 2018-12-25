@@ -1,18 +1,19 @@
 import { Component } from '@angular/core';
 
-import { AboutPage } from '../about/about';
-import { ContactPage } from '../contact/contact';
-import { HomePage } from '../home/home';
+import { CashPage } from '../cash/cash';
+import { CryptoPage } from '../crypto/crypto';
+import { ConverterPage } from '../converter/converter';
+import { OptionsPage } from '../options/options';
 
 @Component({
   templateUrl: 'tabs.html'
 })
 export class TabsPage {
 
-  tab1Root = HomePage;
-  tab2Root = AboutPage;
-  tab3Root = ContactPage;
-
+  tab1Root = CashPage;
+  tab2Root = CryptoPage;
+  tab3Root = ConverterPage;
+  tab4Root = OptionsPage;
   constructor() {
 
   }

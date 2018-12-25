@@ -1,14 +1,14 @@
 import { Component } from '@angular/core';
-import { NavController} from 'ionic-angular';
+import { NavController } from 'ionic-angular';
 import { HttpClient } from '@angular/common/http';
 import { CurrencyProvider } from '../../providers/currency/currency';
 
 @Component({
-  selector: 'page-home',
-  templateUrl: 'home.html',
+  selector: 'page-cash',
+  templateUrl: 'cash.html',
   providers: [CurrencyProvider]
 })
-export class HomePage {
+export class CashPage {
   currencies: Array<{ name: string, rate: number }>;
   baseCurrency: string;
   keys: string[];

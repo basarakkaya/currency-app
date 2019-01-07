@@ -10,16 +10,16 @@
     <ion-item>
       <ion-label>Baz Birim</ion-label>
       <ion-select [(ngModel)]="baseCurrency" (ionChange)="currencyChange(baseCurrency)">
-        <ion-option *ngFor="let key of currencies" value="{{key.name}}">{{key.name}}</ion-option>
+        <ion-option *ngFor="let currency of currencies" value="{{currency.name}}">{{currency.name}}</ion-option>
       </ion-select>
     </ion-item>
     <ion-item>
       <ion-label>Tarih</ion-label>
-      <ion-datetime displayFormat="DD/MM/YYYY" [(ngModel)]="date" (ionChange)="dateChange(date)"></ion-datetime>
+      <ion-datetime displayFormat="DD/MM/YYYY" [(ngModel)]="date" (ionChange)="dateChange(date)" min="1999" max="{{today}}"></ion-datetime>
     </ion-item>
-    <div class="row" *ngFor="let currency of currencies">
-      <div class="col" *ngIf="currency.name !== baseCurrency">{{currency.name}}</div>
-      <div class="col" *ngIf="currency.name !== baseCurrency">{{currency.rate}} {{baseCurr}}</div>
+    <div class="row" *ngFor="let rate of currencies">
+      <div class="col" *ngIf="rate.name !== baseCurrency">{{rate.name}}</div>
+      <div class="col" *ngIf="rate.name !== baseCurrency">{{rate.value}} {{baseCurrency}}</div>
     </div>
   </div>
 </ion-content>

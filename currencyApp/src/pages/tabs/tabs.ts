@@ -10,10 +10,10 @@ import { OptionsPage } from '../options/options';
 })
 export class TabsPage {
 
-  tab1Root = CashPage;
-  tab2Root = CryptoPage;
-  tab3Root = ConverterPage;
-  tab4Root = OptionsPage;
+  tabCash = CashPage;
+  tabCrypto = CryptoPage;
+  tabConverter = ConverterPage;
+  tabOptions = OptionsPage;
   constructor() {
 
   }

@@ -13,6 +13,7 @@ import { TabsPage } from '../pages/tabs/tabs';
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
 import { CurrencyProvider } from '../providers/currency/currency';
+import { DateTimeProvider } from '../providers/dateTime/dateTime';
 
 @NgModule({
   declarations: [
@@ -42,7 +43,8 @@ import { CurrencyProvider } from '../providers/currency/currency';
     StatusBar,
     SplashScreen,
     {provide: ErrorHandler, useClass: IonicErrorHandler},
-    CurrencyProvider
+    CurrencyProvider,
+    DateTimeProvider
   ]
 })
 export class AppModule {}

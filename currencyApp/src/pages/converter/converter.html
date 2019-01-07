@@ -6,12 +6,39 @@
   </ion-navbar>
 </ion-header>
 
-<ion-content>
-  <ion-list>
-    <ion-list-header>Follow us on Twitter</ion-list-header>
-    <ion-item>
-      <ion-icon name="ionic" item-start></ion-icon>
-      @ionicframework
-    </ion-item>
-  </ion-list>
+<ion-content padding>
+  <div class="row">
+    <div class="col">
+      <h1>{{currencyFrom}}</h1>
+    </div>
+    <div class="col">
+      <h1>{{currencyTo}}</h1>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col">
+        <ion-label></ion-label>
+        <ion-select [(ngModel)]="currencyFrom" (ionChange)="currencyChange()">
+          <ion-option *ngFor="let keyFrom of currencies" value="{{keyFrom}}">{{keyFrom}}</ion-option>
+        </ion-select>
+    </div>
+    <div class="col">
+        <ion-label></ion-label>
+        <ion-select [(ngModel)]="currencyTo" (ionChange)="currencyChange()">
+          <ion-option *ngFor="let keyTo of currencies" value="{{keyTo}}">{{keyTo}}</ion-option>
+        </ion-select>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col">
+        <h1>
+          <ion-item>
+            <ion-input type="text" [(ngModel)]="fromValue" (ionChange)="currencyChange()"></ion-input>
+          </ion-item>
+        </h1>
+    </div>
+    <div class="col">
+        <h1>{{toValue}}</h1>
+    </div>
+  </div>
 </ion-content>

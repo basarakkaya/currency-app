@@ -39,8 +39,22 @@ export class CurrencyProvider {
           Object.keys(response.rates).forEach(cKey => {
             rates.push({
               "name": cKey,
-              "rate": (1 / response.rates[cKey]).toPrecision(3)
+              "value": (1 / response.rates[cKey]).toPrecision(3)
             });
+          });
+          res(rates);
+        });
+    });
+  }
+
+  getRateOf(from, to){
+    return new Promise((res, rej) => {
+      let url = "https://api.exchangeratesapi.io/latest?base=" + from + "&symbols=" + to,
+      rates = 0;
+        this.http.get(url).toPromise().then(
+          (response:ApiObject) => {
+          Object.keys(response.rates).forEach(cKey => {
+            rates = 1 / response.rates[cKey].toPrecision(3);
           });
           res(rates);
         });
